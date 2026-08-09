@@ -122,9 +122,12 @@ label {
     const params = new URLSearchParams(window.location.search);
 
     if (params.get("submitted") === "true") {
-        document.querySelector("form").style.display = "none";
-        document.getElementById("thankYouMessage").style.display = "block";
-    }
+    document.querySelector("form").style.display = "none";
+    document.querySelector(".rakhi").style.display = "none";
+    document.querySelector("h1").style.display = "none";
+    document.querySelector("body > p").style.display = "none";
+    document.getElementById("thankYouMessage").style.display = "block";
+}
 </script>
 </body>
 </html>
