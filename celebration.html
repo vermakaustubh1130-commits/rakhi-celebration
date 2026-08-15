@@ -142,6 +142,25 @@
                 height: 180px;
             }
         }
+        .surprise-heart {
+            position: fixed;
+            font-size: 28px;
+            pointer-events: none;
+            animation: heartRise 2s ease-out forwards;
+            z-index: 999;
+        }
+
+        @keyframes heartRise {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-250px) scale(1.5);
+            }
+        }
     </style>
 </head>
 
@@ -207,12 +226,34 @@
 
     <script>
         const surpriseButton = document.getElementById("surpriseButton");
-        const surprise = document.getElementById("surprise");
+const surprise = document.getElementById("surprise");
 
-        surpriseButton.addEventListener("click", function() {
-            surprise.style.display = "block";
-            surpriseButton.style.display = "none";
-        });
+surpriseButton.addEventListener("click", function() {
+
+    const hearts = ["💖", "💗", "💕", "✨", "🎀"];
+
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+
+        heart.className = "surprise-heart";
+        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = (60 + Math.random() * 30) + "vh";
+        heart.style.animationDelay = Math.random() * 0.5 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 2500);
+    }
+
+    setTimeout(() => {
+        surprise.style.display = "block";
+        surpriseButton.style.display = "none";
+    }, 500);
+});
     </script>
 
 </body>
