@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .container {
@@ -100,6 +100,48 @@
                 transform: translateY(-12px);
             }
         }
+
+        .gallery {
+            margin-top: 50px;
+            padding: 30px 15px;
+        }
+
+        .gallery h2 {
+            font-size: 32px;
+            color: #c2185b;
+            margin-bottom: 25px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-grid img {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 
@@ -125,33 +167,53 @@
         <button class="surprise-btn" id="surpriseButton">
             🎁 Open Your Surprise
         </button>
-<div id="surprise" style="display: none; margin-top: 35px;">
 
-    <h2>💖 For My Amazing Sister 💖</h2>
+        <div id="surprise" style="display: none; margin-top: 35px;">
 
-    <p>
-        No matter how many fights we have,
-        no matter how much we tease each other,
-        you will always be one of the most special people in my life. 🫶
-    </p>
+            <h2>💖 For My Amazing Sister 💖</h2>
 
-    <p>
-        This little surprise is just a small way of saying...
-    </p>
+            <p>
+                No matter how many fights we have,
+                no matter how much we tease each other,
+                you will always be one of the most special people in my life. 🫶
+            </p>
 
-    <h2>Happy Raksha Bandhan! 🎀</h2>
+            <p>
+                This little surprise is just a small way of saying...
+            </p>
 
-</div>
+            <h2>Happy Raksha Bandhan! 🎀</h2>
+
+            <div class="gallery">
+
+                <h2>📸 Our Special Memories 💖</h2>
+
+                <div class="photo-grid">
+
+                    <img src="photos/photo1.jpeg" alt="Special memory 1">
+                    <img src="photos/photo2.jpeg" alt="Special memory 2">
+                    <img src="photos/photo3.jpeg" alt="Special memory 3">
+                    <img src="photos/photo4.jpeg" alt="Special memory 4">
+                    <img src="photos/photo5.jpeg" alt="Special memory 5">
+                    <img src="photos/photo6.jpeg" alt="Special memory 6">
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
-<script>
-    const surpriseButton = document.getElementById("surpriseButton");
-    const surprise = document.getElementById("surprise");
 
-    surpriseButton.addEventListener("click", function() {
-        surprise.style.display = "block";
-        surpriseButton.style.display = "none";
-    });
-</script>
+    <script>
+        const surpriseButton = document.getElementById("surpriseButton");
+        const surprise = document.getElementById("surprise");
+
+        surpriseButton.addEventListener("click", function() {
+            surprise.style.display = "block";
+            surpriseButton.style.display = "none";
+        });
+    </script>
+
 </body>
 </html>
