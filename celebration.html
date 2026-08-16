@@ -175,6 +175,64 @@
                 font-size: 18px;
             }
         }
+/* Puzzle Section */
+
+.puzzle-section {
+    margin-top: 40px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.puzzle-section h2 {
+    color: #c2185b;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.puzzle {
+    display: none;
+}
+
+.puzzle.active {
+    display: block;
+}
+
+.puzzle-text {
+    font-size: 21px;
+    font-weight: bold;
+    color: #6d4c5b;
+    margin: 25px 0;
+}
+
+.puzzle-input {
+    width: 90%;
+    max-width: 400px;
+    padding: 13px 18px;
+    border: 2px solid #f3a6c1;
+    border-radius: 25px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+}
+
+.answer-btn {
+    margin-top: 15px;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: #c2185b;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.answer-message {
+    min-height: 25px;
+    margin-top: 15px;
+    font-weight: bold;
+}
     </style>
 </head>
 
@@ -196,8 +254,83 @@
             it's about the bond, memories, fights, laughter,
             and all the little moments that make this relationship special. 🎀
         </p>
+<div class="puzzle-section" id="puzzleSection">
 
-        <button class="surprise-btn" id="surpriseButton">
+    <h2>🧩 A Little Challenge For You 💖</h2>
+
+    <p>
+        Solve all four puzzles to unlock your surprise! 😏🎀
+    </p>
+
+    <div class="puzzle active" data-answer="jaan">
+        <div class="puzzle-text">
+            🧩 Puzzle 1<br><br>
+            You are my Japan without P
+        </div>
+
+        <input class="puzzle-input" type="text"
+               placeholder="Type your answer...">
+
+        <br>
+
+        <button class="answer-btn">Submit ❤️</button>
+
+        <div class="answer-message"></div>
+    </div>
+
+
+    <div class="puzzle" data-answer="i love u">
+        <div class="puzzle-text">
+            🧩 Puzzle 2<br><br>
+            I love Gold without A
+        </div>
+
+        <input class="puzzle-input" type="text"
+               placeholder="Type your answer...">
+
+        <br>
+
+        <button class="answer-btn">Submit ❤️</button>
+
+        <div class="answer-message"></div>
+    </div>
+
+
+    <div class="puzzle" data-answer="i love u">
+        <div class="puzzle-text">
+            🧩 Puzzle 3<br><br>
+            Biology without Boog
+        </div>
+
+        <input class="puzzle-input" type="text"
+               placeholder="Type your answer...">
+
+        <br>
+
+        <button class="answer-btn">Submit ❤️</button>
+
+        <div class="answer-message"></div>
+    </div>
+
+
+    <div class="puzzle" data-answer="you are my love">
+        <div class="puzzle-text">
+            🧩 Puzzle 4<br><br>
+            You are my Biology without bioogy
+        </div>
+
+        <input class="puzzle-input" type="text"
+               placeholder="Type your answer...">
+
+        <br>
+
+        <button class="answer-btn">Submit ❤️</button>
+
+        <div class="answer-message"></div>
+    </div>
+
+</div>
+       <button class="surprise-btn" id="surpriseButton" style="display: none;">
             🎁 Open Your Surprise
         </button>
 
@@ -239,6 +372,47 @@
     </div>
 
     <script>
+const puzzles = document.querySelectorAll(".puzzle");
+let currentPuzzle = 0;
+
+puzzles.forEach((puzzle, index) => {
+    const input = puzzle.querySelector(".puzzle-input");
+    const button = puzzle.querySelector(".answer-btn");
+    const message = puzzle.querySelector(".answer-message");
+
+    button.addEventListener("click", function() {
+
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = puzzle.dataset.answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+
+            message.innerText = "🎉 Correct! ❤️";
+
+            if (index < puzzles.length - 1) {
+
+                setTimeout(() => {
+                    puzzle.classList.remove("active");
+                    puzzles[index + 1].classList.add("active");
+                }, 700);
+
+            } else {
+
+                message.innerText = "🎉 You solved them all! 🎀";
+
+                setTimeout(() => {
+                    document.getElementById("puzzleSection").style.display = "none";
+                    document.getElementById("surpriseButton").style.display = "inline-block";
+                }, 700);
+            }
+
+        } else {
+
+            message.innerText = "😜 Nope! Try again...";
+            input.value = "";
+        }
+    });
+});
         const surpriseButton = document.getElementById("surpriseButton");
         const surprise = document.getElementById("surprise");
 
